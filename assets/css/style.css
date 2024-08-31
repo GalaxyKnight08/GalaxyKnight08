@@ -68,8 +68,7 @@ html{
 #content .sec_5 .contact_box_cell .message .submit_btn:hover,
 #header .search-btn:hover,
 #nav li:hover > a,
-#content .Modal_img_cell .close:hover,
-#content .sec_4 .playlist .list_changing:hover{
+#content .Modal_img_cell .close:hover{
     color:black;
     background-color: #ccc;
 } 
@@ -181,7 +180,7 @@ html{
     display: inline-block;
     background-color: black;
     color: white;
-    padding: 0px 0px 10px 0px;
+    padding: 12px 0px 10px 0px;
     margin: 16px;
     width: 300px;
 }
@@ -298,19 +297,35 @@ html{
     margin-bottom: 8px;
   }
 #content .sec_4 .playlist {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    position: relative;
 }
 #content .sec_4 .playlist .list_changing{
     width: 5%;
-    font-size: 4vw;
-    justify-content: center;
-    display: flex;
+    font-size: 40px;
+    display: block;
     cursor: pointer;
+    position: absolute;
+    /* top: 0; */
+    transition: text-shadow 0.5s ease;
+    padding: 12px 0px;
+}
+#content .sec_4 .playlist .list_changing.right{
+    right: 40%;
+} 
+#content .sec_4 .playlist .list_changing.left{
+    left: 40%;
+}
+
+.light-hover:hover{
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+}
+.light-active{
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
 }
 #content .sec_4 .playlist .music_box {
     text-align: left;
-    width: calc(90%/3);
+    /* width: calc(90%/3); */
     border-radius: 30px;
 }
 #content .sec_4 .playlist .music_box .play_btn {
@@ -379,7 +394,7 @@ html{
     padding: 2vh 12px 2vh 12px;
     width: 100%;
     text-align: left;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 #content .sec_4 .mini_music_player .control_btn{
@@ -391,73 +406,7 @@ html{
     padding: 2vh 12px 2vh 12px;
     cursor: pointer;
 }
-#content .sec_4 .music_player{
-    position: fixed;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    background-color: black;
-    display: none;
-}
-#content .sec_4 .music_player .img{
-    position: absolute;
-    right: 12%;
-    left: 12%;
-    top: 12%;
-    bottom: 28%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-}
-#content .sec_4 .music_player .info{
-    position: absolute;
-    /* width: 100%; */
-    bottom: 16%;
-    right: 12%;
-    left: 12%;
-    overflow: hidden; 
-}
-.text-animation{
-    white-space: nowrap; 
-    animation: marquee 15s linear infinite;
-}
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-    /* 50%{
-        transform: translateX(-100%);
-    } */
-    100% {
-        transform: translateX(-100%);
-    }
-}
-#content .sec_4 .music_player .controller{
-    position: absolute;
-    bottom: 4%;
-    width: 100%;
-}
-#content .sec_4 .music_player .controller i{
-    font-size: 200%;
-    padding: 0px 16px;
-    cursor: pointer;
-}
-#content .sec_4 .music_player .close_btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#content .sec_4 .music_player .close_btn i{
-    font-size: 240%;
-    padding: 16px 16px;
-    cursor: pointer;
-}
-#content .sec_4 .music_player .close_btn i:hover{
-    color: black;
-    background-color: #ccc;
-}
+
 #content .sec_5 .contact_box_cell .contact_box{
     display: inline-block;
     width: 300px;
@@ -540,6 +489,21 @@ html{
 .img_100_percent {
     width:100%;
 }
+@media (max-width: 668px){
+    #content .sec_4 .playlist .list_changing.right{
+        width: 100%;
+        right: 0;
+        text-align: center;
+        font-size: 60px;
+    } 
+    #content .sec_4 .playlist .list_changing.left{
+        top: 0;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        font-size: 60px;
+    }
+}
 @media (min-width: 568px) {
     #header.full {
         display: block;
@@ -596,3 +560,129 @@ html{
         display: block;
     }
 }
+#music_player {
+    position: absolute;
+    top: 0;
+    /* height: 100%; */
+    width: 100%;
+    z-index: 2;
+    background-color: black;
+    display: none;
+    color: white;
+    text-align: center;
+}
+#music_player .player-box{
+    position: relative;
+    height: 90vh;
+}
+#music_player .player-box .img{
+    position: absolute;
+    right: 12%;
+    left: 12%;
+    top: 0%;
+    bottom: 32%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+#music_player .player-box .info{
+    position: absolute;
+    /* width: 100%; */
+    bottom: 20%;
+    right: 12%;
+    left: 12%;
+    overflow: hidden; 
+}
+.text-animation{
+    /* overflow: hidden;  */
+    white-space: nowrap; 
+    animation: marquee 15s linear infinite;
+    /* animation-play-state: paused; */
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+#music_player .player-box .progress-line {
+    position: absolute;
+    height: 8px;
+    background-color: aqua;
+    left: 16%;
+    right: 16%;
+    bottom: 16%;
+    border-radius: 30px;
+    border-block-color: white;
+    border: 2px;
+    border-style: solid;
+}
+#music_player .player-box .controller{
+    position: absolute;
+    bottom: 4%;
+    width: 100%;
+}
+#music_player .player-box .controller i{
+    font-size: 200%;
+    padding: 0px 16px;
+    cursor: pointer;
+    transition: text-shadow 0.5s ease;
+}
+#music_player .close_btn{
+    text-align: right;
+    height: 10vh;
+}
+#music_player .close_btn i{
+    font-size: 240%;
+    padding: 16px 16px;
+    cursor: pointer;
+}
+#music_player .close_btn i:hover{
+    color: black;
+    background-color: #ccc;
+}
+#music_player .sub-playlist{
+    text-align: left;
+    display: none;
+}
+#music_player .sub-playlist li{
+    height: 10vh;
+    /* width: 100%; */
+    display: flex;
+    margin: 12px;
+}
+#music_player .sub-playlist li .img{
+    height: 100%;
+    /* width: 1vh; */
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%; /* Make the image round */
+    animation: spin 5s linear infinite; /* Animation for spinning */
+    animation-play-state: paused; /* Start with spinning paused */
+}
+#music_player .sub-playlist li .img.active_animation{
+    animation-play-state: running;
+}
+#music_player .sub-playlist li .text_content {
+    /* position: relative; Đảm bảo canvas sẽ là nền của .text_content */
+    overflow: hidden;
+    /* width: 100%; */
+    text-align: left;
+    /* display: flex; */
+    align-items: center;
+    padding: 2vh 12px 2vh 12px;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
