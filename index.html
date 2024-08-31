@@ -220,35 +220,35 @@
                 <h1 class="title">Playlist</h1>     
                 <p class="sub_title">My type of music</p>
                 <div class="playlist">
-                    <i class="list_changing fa-solid fa-chevron-left"></i>
                     <div class="music_box box_shadow_hover_to_aqua">
-                        <!-- <img class="img img_100_percent" src="./assets/music_img/xe độ.jpg">
+                        <audio src="./assets/music/CẬU PHÁT - Xe Độ ft. CCMK - CHÁY PHỐ 7 TÌNH EP.mp3" class="song"></audio>
                         <div class="play_btn">
                             <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
                             <i class="fa-regular fa-circle-play"></i>
                         </div>    
                         <h3 class="name">Xe độ</h3>
-                        <h4 class="artist">Cậu Phát ft. CCMK</h4> -->
+                        <h4 class="artist">Cậu Phát ft. CCMK</h4>
                     </div>
                     <div class="music_box box_shadow_hover_to_aqua">
-                        <!-- <img class="img img_100_percent" src="./assets/music_img/dám.jpg">
+                        <audio src="./assets/music/DÁM - HƯNG CAO ft Khánh x Hoàng AT.mp3" class="song"></audio>
                         <div class="play_btn">
                             <div class="img" style="background-image: url('./assets/music_img/dám.jpg')"></div>
                             <i class="fa-regular fa-circle-play"></i>
                         </div> 
                         <h3 class="name">Dám</h3>
-                        <h4 class="artist">Hưng Cao ft Khánh x Hoàng AT </h4> -->
+                        <h4 class="artist">Hưng Cao ft Khánh x Hoàng AT </h4>
                     </div>
                     <div class="music_box box_shadow_hover_to_aqua">
-                        <!-- <img class="img img_100_percent" src="./assets/music_img/góc nhìn khác.jpg">
+                        <audio src="./assets/music/[DRILLINTHELIFE] 2. GÓC NHÌN KHÁC - HAZEL (Prod. Minh Vũ) - OFFICIAL LYRIC VIDEO.mp3" class="song"></audio>
                         <div class="play_btn">
                             <div class="img" style="background-image: url('./assets/music_img/góc nhìn khác.jpg')"></div>
                             <i class="fa-regular fa-circle-play"></i>
                         </div> 
                         <h3 class="name">Góc nhìn khác</h3>
-                        <h4 class="artist">Hazel</h4> -->
+                        <h4 class="artist">Hazel</h4>
                     </div>
-                    <i class="list_changing fa-solid fa-chevron-right"></i>
+                    <i class="list_changing left fa-solid fa-chevron-left light-hover"></i>
+                    <i class="list_changing right fa-solid fa-chevron-right light-hover"></i>
                 </div>
                 <div class="mini_music_player">
                     <img src="./assets/music_img/xe độ.jpg">
@@ -258,28 +258,11 @@
                         <h4 class="artist height_50_percent text-animation">Cậu Phát ft. CCMK</h4>
                     </div>
                     <div class="control_btn">
-                        <i class="play_btn fa-solid fa-play"></i>
+                        <i class="play_btn fa-solid fa-pause"></i>
                         <i class="close_btn fa-solid fa-xmark"></i>
                     </div>
                 </div>
-                <div class="music_player">
-                    <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
-                    <div class="info">
-                        <h1 class="info_text text-animation">Xe độ - Cậu Phát ft. CCMK</h1>
-                    </div>
-                    <div class="controller">
-                        <i class="fa-solid fa-repeat"></i>
-                        <i class="fa-solid fa-backward-step"></i>
-                        <i class="play_btn fa-solid fa-play"></i>
-                        <i class="fa-solid fa-forward-step"></i>
-                        <i class="fa-solid fa-shuffle"></i>
-                        <i class="fa-solid fa-list-ul"></i>
-                    </div>
-                    <div class="close_btn">
-                        <i class="fa-solid fa-chevron-down box_shadow_hover_to_aqua"></i>
-                        <i class="fa-solid fa-xmark box_shadow_hover_to_aqua"></i>
-                    </div>
-                </div>
+                
             </div>
             <div id="Contact" class="content_section sec_5">
                 <h1 class="title"> Contact</h1>     
@@ -320,6 +303,128 @@
                 this.style.height = this.scrollHeight + 'px';
             }
         </script>
+        <div id="music_player">
+            <div class="close_btn">
+                <i class="fa-solid fa-chevron-down box_shadow_hover_to_aqua"></i>
+                <i class="fa-solid fa-xmark box_shadow_hover_to_aqua"></i>
+            </div>
+            <div class="player-box">
+                <audio id="audio" src="./assets/music/CẬU PHÁT - Xe Độ ft. CCMK - CHÁY PHỐ 7 TÌNH EP.mp3" class="song"></audio>
+                <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                <div class="info">
+                    <h1 class="info_text text-animation">Xe độ - Cậu Phát ft. CCMK</h1>
+                </div>
+                <div class="progress-line"></div>
+                <div class="controller">
+                    <i class="light-hover fa-solid fa-repeat"></i>
+                    <i class="light-hover fa-solid fa-backward-step "></i>
+                    <i class="light-hover fa-solid fa-pause "></i>
+                    <i class="light-hover fa-solid fa-forward-step "></i>
+                    <i class="light-hover fa-solid fa-shuffle"></i>
+                    <i class="light-hover fa-solid fa-list-ul "></i>
+                </div>
+            </div>
+            <div class="sub-playlist">
+                <ul>
+                    <li class="list-item">
+                        <div class="img active_animation" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li><li class="list-item">
+                        <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="img" style="background-image: url('./assets/music_img/xe độ.jpg')"></div>
+                        <!-- <div class="img"></div> -->
+                        <div class="text_content">
+                            <h3 class="name height_50_percent ">Xe độ</h3>
+                            <h4 class="artist height_50_percent">Cậu Phát ft. CCMK</h4>
+                            <!-- <canvas id="visualizer" width="10%" height="100%"></canvas> -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- <script>
+        const audio = document.getElementById('audio');
+        const canvas = document.getElementById('visualizer');
+        const ctx = canvas.getContext('2d');
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 128;
+
+        const source = audioContext.createMediaElementSource(audio);
+        console.log(source);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        function drawVisualizer() {
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            analyser.getByteFrequencyData(dataArray);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const barWidth = (canvas.width / bufferLength) * 2.5;
+            let barHeight;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i] / 2;
+
+                ctx.fillStyle = 'white';
+                ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
+
+                x += barWidth + 1;
+            }
+
+            requestAnimationFrame(drawVisualizer);
+        }
+
+        audio.onplay = () => {
+            audioContext.resume().then(() => {
+                drawVisualizer();
+            });
+        };
+    </script> -->
         <script src="https://kit.fontawesome.com/8a038be4d0.js" crossorigin="anonymous"></script>
         <script>
             var MyIndex=0;
