@@ -110,7 +110,7 @@ var mini_music_player = myplaylist.querySelector('.mini_music_player');
 var mini_music_player_control_btn = mini_music_player.querySelector('.control_btn');
 var mini_music_player_close_btn = mini_music_player_control_btn.querySelector('.close_btn');
 var music_player_full_scr = $('#music_player');
-var cur_song_audio = music_player_full_scr.querySelector("audio");
+var cur_song_audio = music_player_full_scr.querySelector("#audio");
 render_music_boxes(0);
 /*Playlist changing */
 
@@ -158,7 +158,14 @@ function render_music_boxes(idx){
 }
 /*Mini music player*/
 
-
+mini_music_player.onclick = () => {
+  slider.style.display = "none";
+  page_contents.style.display = "none";
+  sunset_img.style.display = "none";
+  footer.style.display = "none";
+  mini_music_player.style.display = 'none';
+  music_player_full_scr.style.display = 'block';
+}
 /*Close mini music player */
 mini_music_player_close_btn.onclick = () =>{
   cur_song_audio.pause();
@@ -189,14 +196,12 @@ var music_player_full_scr_list_btn = music_player_full_scr_controller.querySelec
 var music_player_full_scr_sublist = music_player_full_scr.querySelector('.sub-playlist');
 var isShuffle = false;
 var isReplay = false;
+/*Music_player_full_scr_close_controller */
 music_player_full_scr_list_btn.onclick = () => {
   music_player_full_scr_sublist.style.display = 'block';
 }
-// console.log(music_player_full_scr_minimize_btn);
 music_player_full_scr_minimize_btn.onclick = () => {
-  // console.log(music_player_full_scr.classList);
   var cur_idx_music_player_full_scr = music_player_full_scr.classList[music_player_full_scr.classList.length - 1];
-  // console.log(cur_idx_music_player_full_scr);
   slider.style.display = "block";
   page_contents.style.display = "block";
   sunset_img.style.display = "block";
@@ -212,6 +217,7 @@ music_player_full_scr_close_btn.onclick = () => {
   cur_song_audio.pause();
   music_player_full_scr.style.display = 'none';
 }
+/*Music_player_full_scr_controller */
 music_player_full_scr_pause_btn.onclick = () =>{
   console.log(music_player_full_scr_pause_btn.classList);
   if(music_player_full_scr_pause_btn.classList[music_player_full_scr_pause_btn.classList.length - 1]==='fa-pause'){
@@ -241,7 +247,7 @@ function render_music_player(cur_idx){
   page_contents.style.display = "none";
   sunset_img.style.display = "none";
   footer.style.display = "none";
-  //console.log(cur_song_audio);
+  console.log(cur_song_audio);
   var song_audio_path = playlist[cur_idx].path;
   cur_song_audio.src = "./assets" + song_audio_path;
   cur_song_audio.play();
@@ -287,7 +293,7 @@ function render_music_player(cur_idx){
   //cur_idx++;
   music_player_full_scr_changing_forward_btn.onclick = () => render_music_player(++cur_idx);
   music_player_full_scr_changing_backward_btn.onclick = () => render_music_player(cur_idx - 1);
-
+  boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container  
 }
 function music_player_full_scr_mode(cur_idx){
   console.log(cur_idx);
@@ -321,7 +327,97 @@ function music_player_full_scr_mode(cur_idx){
     cur_song_audio.onended = () => render_music_player(cur_idx)
   }
 }
-/*Play music */
+/*Progress-line */
+var progress_line_box = document.querySelector('.progress-line-box');
+var progress_line = document.querySelector('.progress-line');
+var progress_dot = document.querySelector('.progress-dot');
+var timePassed = document.querySelector('.time-passed');
+var timeTotal = document.querySelector('.time-total');
+var boxWidth = progress_line_box.offsetWidth - 4;
+//console.log(progress_line_box);
+// Set initial width of progress line and position of progress dot
+progress_line.style.width = '0px';
+progress_dot.style.left = '0px';
+
+var isDragging = false; // Flag to track dragging state
+// Update total duration display when cur_song_audio metadata is loaded
+cur_song_audio.onloadedmetadata = function() {
+    var duration = cur_song_audio.duration;
+    timeTotal.textContent = formatTime(duration);
+};
+
+// Update progress line and time display as cur_song_audio plays
+cur_song_audio.ontimeupdate = function() {
+    if (!isDragging) {
+        var currentTime = cur_song_audio.currentTime;
+        var duration = cur_song_audio.duration;
+        var percentage = currentTime / duration;
+        var cur_width = boxWidth * percentage;
+        //console.log(percentage);
+        //console.log(cur_width);
+        progress_line.style.width = cur_width + "px";
+        progress_dot.style.left = cur_width + "px";
+        timePassed.textContent = formatTime(currentTime);
+    }
+};
+
+// Format time in MM:SS format
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// Function to update the progress line width and seek cur_song_audio position
+function updateProgressLine(event) {
+    var rect = progress_line_box.getBoundingClientRect();
+    var x = event.clientX - rect.left; // Calculate x relative to the container
+    // Ensure x does not exceed the width of the container
+    if (x >= boxWidth) {
+        x = boxWidth;
+    }
+
+    // Calculate the new time and update cur_song_audio
+    var newTime_percent = x / boxWidth;
+    console.log(newTime_percent); // Set the new current time for the cur_song_audio
+    console.log(x);
+    console.log(boxWidth);
+    newTime = cur_song_audio.duration * newTime_percent;
+    cur_song_audio.currentTime = newTime;
+    // Update the width of the progress line and position of the dot
+    progress_line.style.width = x + "px";
+    progress_dot.style.left = x + "px";
+    
+    timePassed.textContent = formatTime(newTime);
+}
+window.onresize = () => {
+    boxWidth = progress_line_box.offsetWidth - 4;
+    // console.log(boxWidth);
+    progress_line.style.width = boxWidth * (cur_song_audio.currentTime / cur_song_audio.duration) + "px";
+    progress_dot.style.left = boxWidth * (cur_song_audio.currentTime / cur_song_audio.duration) + "px";
+}
+// Handle mousedown event on progress_line_box to start dragging
+progress_line_box.addEventListener('mousedown', function(event) {
+    isDragging = true; // Set dragging flag to true
+    updateProgressLine(event); // Update progress line on initial click
+});
+
+// Handle mousemove event on progress_line_box to continue dragging
+progress_line_box.addEventListener('mousemove', function(event) {
+    if (isDragging) { // Only update if dragging
+        updateProgressLine(event);
+    }
+});
+
+// Handle mouseup event on progress_line_box to stop dragging
+document.addEventListener('mouseup', function() {
+    isDragging = false; // Set dragging flag to false
+});
+
+// Handle mouseleave event on progress_line_box to stop dragging when mouse leaves the box
+// progress_line_box.addEventListener('mouseleave', function() {
+//     isDragging = false; // Set dragging flag to false
+// });
 
 /*Close  */
 /*Shuffle */
