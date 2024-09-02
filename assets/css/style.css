@@ -385,6 +385,7 @@ html{
     background-color: white;
     width: 98%;
     display: none;
+    cursor: pointer;
 }
 #content .sec_4 .mini_music_player img{
     height: 100%;
@@ -608,17 +609,41 @@ html{
         transform: translateX(-100%);
     }
 }
-#music_player .player-box .progress-line {
+#music_player .player-box .progress-line-box {
     position: absolute;
-    height: 8px;
-    background-color: aqua;
+    height: 10px;
+    background-color: white;
     left: 16%;
     right: 16%;
     bottom: 16%;
     border-radius: 30px;
-    border-block-color: white;
-    border: 2px;
-    border-style: solid;
+    cursor: pointer;
+}
+#music_player .player-box .progress-line-box .progress-line {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    bottom: 2px;
+    background-color: aqua;
+    border-radius: 30px;
+}
+#music_player .player-box .progress-line-box .progress-dot {
+    height: 100%;
+    aspect-ratio: 2/1;
+    background-color: #ccc;
+    position: absolute;
+    border-radius: 30px;
+    display: none;
+    transition: all 0.1s ease;
+}
+#music_player .player-box .progress-line-box .progress-dot .duration-box {
+    color: white;
+    position: absolute;
+    top: -24px;
+    right: -24px;
+}
+#music_player .player-box .progress-line-box:hover .progress-dot {
+    display: block;
 }
 #music_player .player-box .controller{
     position: absolute;
