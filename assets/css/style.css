@@ -327,6 +327,7 @@ html{
     text-align: left;
     /* width: calc(90%/3); */
     border-radius: 30px;
+    /* transition: all 5s ease; */
 }
 #content .sec_4 .playlist .music_box .play_btn {
     height: 300px;
@@ -678,6 +679,7 @@ html{
     /* width: 100%; */
     display: flex;
     margin: 12px;
+    cursor: pointer;
 }
 #music_player .sub-playlist li .img{
     height: 100%;
@@ -689,6 +691,7 @@ html{
     border-radius: 100%; /* Make the image round */
     animation: spin 5s linear infinite; /* Animation for spinning */
     animation-play-state: paused; /* Start with spinning paused */
+    transition: all 0.5s ease;
 }
 #music_player .sub-playlist li .img.active_animation{
     animation-play-state: running;
@@ -702,12 +705,12 @@ html{
     align-items: center;
     padding: 2vh 12px 2vh 12px;
 }
-@keyframes spin {
+/* @keyframes spin {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(360deg);
     }
-}
+} */
 
