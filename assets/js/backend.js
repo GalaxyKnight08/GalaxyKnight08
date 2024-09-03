@@ -74,7 +74,7 @@ const playlist = [
   },
   {
     name: "Dám",
-    artist: "Hưng Cao ft. Khán x Hoàng AT",
+    artist: "Hưng Cao ft. Khánh x Hoàng AT",
     path: "/music/DÁM - HƯNG CAO ft Khánh x Hoàng AT.mp3",
     img: "/music_img/dám.jpg" 
   },
@@ -199,6 +199,29 @@ var isReplay = false;
 /*Music_player_full_scr_close_controller */
 music_player_full_scr_list_btn.onclick = () => {
   music_player_full_scr_sublist.style.display = 'block';
+  playlist.forEach((song) => {
+    var sub_playlist_content = document.querySelector('.sub-playlist-content');
+    var newSongHTML = `
+        <li class="list-item">
+            <div class="img" style="background-image: url('./assets${song.img}')"></div>
+            <div class="text_content">
+                <h3 class="name height_50_percent ">${song.name}</h3>
+                <h4 class="artist height_50_percent">${song.artist}</h4>
+            </div>
+        </li>
+    `
+    sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
+  })
+  active_vinyl(idx);
+}
+function active_vinyl(cur_idx){
+  var active_vinyl = document.querySelector('.list-item .img.active_animation');
+  if(active_vinyl !== null){
+    active_vinyl.classList.remove('active_animation');
+  }
+  var vinyls = document.querySelectorAll('.list-item .img');
+  vinyls[cur_idx].classList.add('active_animation');
+  console.log(vinyls);
 }
 music_player_full_scr_minimize_btn.onclick = () => {
   var cur_idx_music_player_full_scr = music_player_full_scr.classList[music_player_full_scr.classList.length - 1];
@@ -234,7 +257,9 @@ music_player_full_scr_pause_btn.onclick = () =>{
 // console.log(light_active);
 
 function render_music_player(cur_idx){
-
+  if(music_player_full_scr_sublist.style.display === 'block'){
+    active_vinyl(cur_idx);
+  }
   if(cur_idx == playlist.length){
     cur_idx = 0;
   }
@@ -293,7 +318,8 @@ function render_music_player(cur_idx){
   //cur_idx++;
   music_player_full_scr_changing_forward_btn.onclick = () => render_music_player(++cur_idx);
   music_player_full_scr_changing_backward_btn.onclick = () => render_music_player(cur_idx - 1);
-  boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container  
+  boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container 
+  idx = cur_idx; 
 }
 function music_player_full_scr_mode(cur_idx){
   console.log(cur_idx);
