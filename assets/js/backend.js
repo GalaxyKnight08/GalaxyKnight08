@@ -213,6 +213,12 @@ music_player_full_scr_list_btn.onclick = () => {
     sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
   })
   active_vinyl(idx);
+  var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
+  song_sub_playlist.forEach((song, idx) => {
+    song.onclick = () => {
+      render_music_player(idx);
+    }
+  })
 }
 function active_vinyl(cur_idx){
   var active_vinyl = document.querySelector('.list-item .img.active_animation');
@@ -243,30 +249,37 @@ music_player_full_scr_close_btn.onclick = () => {
 /*Music_player_full_scr_controller */
 music_player_full_scr_pause_btn.onclick = () =>{
   console.log(music_player_full_scr_pause_btn.classList);
+  var active_vinyl = document.querySelector('.list-item .img.active_animation');
   if(music_player_full_scr_pause_btn.classList[music_player_full_scr_pause_btn.classList.length - 1]==='fa-pause'){
     cur_song_audio.pause();
     music_player_full_scr_pause_btn.classList.remove('fa-pause');
     music_player_full_scr_pause_btn.classList.add('fa-play');
+    if(active_vinyl !== null){
+      active_vinyl.style.animationPlayState = 'paused';
+    }
   }
   else{
     cur_song_audio.play();
     music_player_full_scr_pause_btn.classList.remove('fa-play');
     music_player_full_scr_pause_btn.classList.add('fa-pause');
+    if(active_vinyl !== null){
+      active_vinyl.style.animationPlayState = 'running';
+    }
   }
 }
 // console.log(light_active);
 
 function render_music_player(cur_idx){
-  if(music_player_full_scr_sublist.style.display === 'block'){
-    active_vinyl(cur_idx);
-  }
+ 
   if(cur_idx == playlist.length){
     cur_idx = 0;
   }
   if (cur_idx < 0){
     cur_idx = playlist.length - 1;
   }
-
+  if(music_player_full_scr_sublist.style.display === 'block'){
+    active_vinyl(cur_idx);
+  }
   console.log(playlist[cur_idx]);
   slider.style.display = "none";
   page_contents.style.display = "none";
@@ -384,6 +397,12 @@ cur_song_audio.ontimeupdate = function() {
         progress_line.style.width = cur_width + "px";
         progress_dot.style.left = cur_width + "px";
         timePassed.textContent = formatTime(currentTime);
+    }
+    var active_vinyl = document.querySelector('.list-item .img.active_animation');
+    if(active_vinyl){
+      var cur_angle = 16 * 360 * (cur_song_audio.currentTime / cur_song_audio.duration);
+      console.log(cur_angle);
+      active_vinyl.style.transform = `rotate(${cur_angle}deg)`
     }
 };
 
