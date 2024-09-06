@@ -305,18 +305,25 @@ html{
     font-size: 40px;
     display: block;
     cursor: pointer;
-    position: absolute;
+    /* position: absolute; */
     /* top: 0; */
     transition: text-shadow 0.5s ease;
     padding: 12px 0px;
 }
-#content .sec_4 .playlist .list_changing.right{
+#content .sec_4 .playlist .list_changing .fa-chevron-right{
     right: 40%;
+    position: absolute;
+    bottom: 0;
 } 
-#content .sec_4 .playlist .list_changing.left{
+#content .sec_4 .playlist .list_changing .fa-chevron-left{
     left: 40%;
+    position: absolute;
+    bottom: 0;
 }
-
+#content .sec_4 .playlist .list_changing .fa-chevron-up,
+#content .sec_4 .playlist .list_changing .fa-chevron-down{
+    display: none;
+}
 .light-hover:hover{
     text-shadow: 0px 0px 8px rgb(255, 255, 255);
 }
@@ -492,19 +499,28 @@ html{
     width:100%;
 }
 @media (max-width: 668px){
-    #content .sec_4 .playlist .list_changing.right{
+    #content .sec_4 .playlist .list_changing .fa-chevron-down{
         width: 100%;
         right: 0;
         text-align: center;
         font-size: 60px;
+        display: block;
+        position: absolute;
     } 
-    #content .sec_4 .playlist .list_changing.left{
+    #content .sec_4 .playlist .list_changing .fa-chevron-up{
         top: 0;
         width: 100%;
         text-align: center;
         left: 0;
         font-size: 60px;
+        display: block;
+        position: absolute;
     }
+    #content .sec_4 .playlist .list_changing .fa-chevron-left,
+    #content .sec_4 .playlist .list_changing .fa-chevron-right{
+        display: none;
+    }
+    
 }
 @media (min-width: 568px) {
     #header.full {
