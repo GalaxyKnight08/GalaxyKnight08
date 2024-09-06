@@ -33,12 +33,12 @@ tabs.forEach((tab, index) => {
   };
 });
 window.addEventListener('resize',() => {
-  //console.log("abc")
+  console.log("abc")
   
   line.style.left = tabActive.offsetLeft + "px";
   line.style.width = tabActive.offsetWidth + "px";
-  // console.log(tabActive.offsetLeft + "px");
-  // console.log(tabActive);
+  console.log(tabActive.offsetLeft + "px");
+  console.log(tabActive);
   
   const tab_item_titles = $$(".sec_3 .tab-item p");
   tab_item_titles.forEach((tab_item_title) =>{
@@ -119,14 +119,14 @@ render_music_boxes(0);
 
 var right_changing_btn = myplaylist.querySelector('.list_changing.right');
 var left_changing_btn = myplaylist.querySelector('.list_changing.left');
-console.log(right_changing_btn);
+console.log(left_changing_btn);
 var idx = 0;
 left_changing_btn.onclick = function() {
   idx--;
   if(idx < 0){
     idx = playlist.length + idx;
   }
-  console.log(idx);
+  // console.log(idx);
   render_music_boxes(idx);
 };
 right_changing_btn.onclick = function () {
@@ -134,7 +134,7 @@ right_changing_btn.onclick = function () {
   if(idx === playlist.length){
     idx = 0;
   }
-  console.log(idx);
+  // console.log(idx);
   render_music_boxes(idx);
 };
 function render_music_boxes(idx){
@@ -174,6 +174,12 @@ function play_audio(cur_idx) {
     var song_audio_path = playlist[cur_idx].path;
     cur_song_audio.src = "./assets" + song_audio_path;
     cur_song_audio.play();
+    if(mini_music_player.style.display === "flex"){
+      render_mini_music_player(cur_idx);
+    }
+    else if(music_player_full_scr.style.display === "block"){
+      render_music_player(cur_idx);
+    }
 }
 /*Mini music player*/
 
@@ -189,7 +195,7 @@ mini_music_player_close_btn.onclick = () =>{
 /*Play/pause on mini music player */
 
 mini_music_player_play_btn.onclick = () => {
-  console.log(mini_music_player_play_btn);
+  // console.log(mini_music_player_play_btn);
   if(mini_music_player_play_btn.classList[mini_music_player_play_btn.classList.length - 1]==='fa-pause'){
     cur_song_audio.pause();
     mini_music_player_play_btn.classList.remove('fa-pause');
@@ -238,27 +244,35 @@ var isShuffle = false;
 var isReplay = false;
 /*Music_player_full_scr_close_controller */
 music_player_full_scr_list_btn.onclick = () => {
-  music_player_full_scr_sublist.style.display = 'block';
-  playlist.forEach((song) => {
-    var sub_playlist_content = document.querySelector('.sub-playlist-content');
-    var newSongHTML = `
-        <li class="list-item">
-            <div class="img" style="background-image: url('./assets${song.img}')"></div>
-            <div class="text_content">
-                <h3 class="name height_50_percent ">${song.name}</h3>
-                <h4 class="artist height_50_percent">${song.artist}</h4>
-            </div>
-        </li>
-    `
-    sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
-  })
-  active_vinyl(idx);
-  var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
-  song_sub_playlist.forEach((song, idx) => {
-    song.onclick = () => {
-      render_music_player(idx);
-    }
-  })
+  if(music_player_full_scr_list_btn.classList
+    [music_player_full_scr_list_btn.classList.length - 1] !== "light-active"){
+    music_player_full_scr_sublist.style.display = 'block';
+    music_player_full_scr_list_btn.classList.add('light-active');
+    playlist.forEach((song) => {
+      var sub_playlist_content = document.querySelector('.sub-playlist-content');
+      var newSongHTML = `
+          <li class="list-item">
+              <div class="img" style="background-image: url('./assets${song.img}')"></div>
+              <div class="text_content">
+                  <h3 class="name height_50_percent ">${song.name}</h3>
+                  <h4 class="artist height_50_percent">${song.artist}</h4>
+              </div>
+          </li>
+      `
+      sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
+    })
+    active_vinyl(idx);
+    var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
+    song_sub_playlist.forEach((song, idx) => {
+      song.onclick = () => {
+        play_audio(idx);
+      }
+    })
+  }
+  else{
+    music_player_full_scr_sublist.style.display = 'none';
+    music_player_full_scr_list_btn.classList.remove('light-active');
+  }
 }
 function active_vinyl(cur_idx){
   var active_vinyl = document.querySelector('.list-item .img.active_animation');
@@ -267,7 +281,7 @@ function active_vinyl(cur_idx){
   }
   var vinyls = document.querySelectorAll('.list-item .img');
   vinyls[cur_idx].classList.add('active_animation');
-  console.log(vinyls);
+  // console.log(vinyls);
 }
 music_player_full_scr_minimize_btn.onclick = () => {
   var cur_idx_music_player_full_scr = music_player_full_scr.classList[music_player_full_scr.classList.length - 1];
@@ -288,7 +302,7 @@ music_player_full_scr_close_btn.onclick = () => {
 }
 /*Music_player_full_scr_controller */
 music_player_full_scr_pause_btn.onclick = () =>{
-  console.log(music_player_full_scr_pause_btn.classList);
+  // console.log(music_player_full_scr_pause_btn.classList);
   var active_vinyl = document.querySelector('.list-item .img.active_animation');
   if(music_player_full_scr_pause_btn.classList[music_player_full_scr_pause_btn.classList.length - 1]==='fa-pause'){
     cur_song_audio.pause();
@@ -308,7 +322,7 @@ music_player_full_scr_pause_btn.onclick = () =>{
   }
 }
 // console.log(light_active);
-
+console
 function render_music_player(cur_idx){
  
   if(cur_idx == playlist.length){
@@ -320,7 +334,7 @@ function render_music_player(cur_idx){
   if(music_player_full_scr_sublist.style.display === 'block'){
     active_vinyl(cur_idx);
   }
-  console.log(playlist[cur_idx]);
+  // console.log(playlist[cur_idx]);
     slider.style.display = "none";
     page_contents.style.display = "none";
     sunset_img.style.display = "none";
@@ -367,26 +381,21 @@ function render_music_player(cur_idx){
   music_player_full_scr_changing_forward_btn.onclick = () => {
     idx = ++cur_idx;
     play_audio(idx);
-    render_music_player(idx);
+    // render_music_player(idx);
   }
   music_player_full_scr_changing_backward_btn.onclick = () => {
     idx = cur_idx - 1; 
     play_audio(idx);
-    render_music_player(idx);
+    // render_music_player(idx);
   }
   boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container 
 }
 function music_player_full_scr_mode(cur_idx){
-  console.log(cur_idx);
+  // console.log(cur_idx);
   if(isReplay === true && isShuffle === false){
-    console.log("replay");
+    // console.log("replay");
     cur_song_audio.onended = () => {
-      if(mini_music_player.style.display === "flex"){
-        render_mini_music_player(cur_idx);
-      }
-      else if(music_player_full_scr.style.display === "block"){
-        render_music_player(cur_idx);
-      }
+      
       idx = cur_idx; 
       play_audio(cur_idx);
     }
@@ -396,49 +405,34 @@ function music_player_full_scr_mode(cur_idx){
     do {
       cur_idx = Math.floor(Math.random() * playlist.length); // Generate a random index
     } while (old_cur_idx === cur_idx);
-    console.log("shuffle " + cur_idx);
+    // console.log("shuffle " + cur_idx);
     cur_song_audio.onended = () => {
-      if(mini_music_player.style.display === "flex"){
-        render_mini_music_player(cur_idx);
-      }
-      else if(music_player_full_scr.style.display === "block"){
-        render_music_player(cur_idx);
-      }
+     
       idx = cur_idx; 
       play_audio(cur_idx);
     }
   }
   else if(isReplay === true && isShuffle === true){
-    console.log("shuffle n replay");
+    // console.log("shuffle n replay");
     cur_song_audio.onended = () => {
       cur_song_audio.play();
       var old_cur_idx = cur_idx;
       do {
         cur_idx = Math.floor(Math.random() * playlist.length); // Generate a random index
       } while (old_cur_idx === cur_idx);
-      console.log("shuffle n replay " + cur_idx);
+      // console.log("shuffle n replay " + cur_idx);
       cur_song_audio.onended = () => {
-        if(mini_music_player.style.display === "flex"){
-          render_mini_music_player(cur_idx);
-        }
-        else if(music_player_full_scr.style.display === "block"){
-          render_music_player(cur_idx);
-        }
+       
         idx = cur_idx; 
         play_audio(cur_idx);
       }
     }
   }
   else{
-    console.log("sequentially")
+    // console.log("sequentially")
     cur_idx++;
     cur_song_audio.onended = () => {
-      if(mini_music_player.style.display === "flex"){
-        render_mini_music_player(cur_idx);
-      }
-      else if(music_player_full_scr.style.display === "block"){
-        render_music_player(cur_idx);
-      }
+      
       idx = cur_idx; 
       play_audio(cur_idx);  
     }
@@ -451,7 +445,7 @@ var progress_dot = document.querySelector('.progress-dot');
 var timePassed = document.querySelector('.time-passed');
 var timeTotal = document.querySelector('.time-total');
 var boxWidth = progress_line_box.offsetWidth - 4;
-//console.log(progress_line_box);
+// console.log(progress_line_box);
 // Set initial width of progress line and position of progress dot
 progress_line.style.width = '0px';
 progress_dot.style.left = '0px';
@@ -470,8 +464,8 @@ cur_song_audio.ontimeupdate = function() {
         var duration = cur_song_audio.duration;
         var percentage = currentTime / duration;
         var cur_width = boxWidth * percentage;
-        //console.log(percentage);
-        //console.log(cur_width);
+        // console.log(percentage);
+        // console.log(cur_width);
         progress_line.style.width = cur_width + "px";
         progress_dot.style.left = cur_width + "px";
         timePassed.textContent = formatTime(currentTime);
@@ -479,7 +473,7 @@ cur_song_audio.ontimeupdate = function() {
     var active_vinyl = document.querySelector('.list-item .img.active_animation');
     if(active_vinyl){
       var cur_angle = 16 * 360 * (cur_song_audio.currentTime / cur_song_audio.duration);
-      console.log(cur_angle);
+      // console.log(cur_angle);
       active_vinyl.style.transform = `rotate(${cur_angle}deg)`
     }
 };
@@ -502,9 +496,9 @@ function updateProgressLine(event) {
 
     // Calculate the new time and update cur_song_audio
     var newTime_percent = x / boxWidth;
-    console.log(newTime_percent); // Set the new current time for the cur_song_audio
-    console.log(x);
-    console.log(boxWidth);
+    // console.log(newTime_percent); // Set the new current time for the cur_song_audio
+    // console.log(x);
+    // console.log(boxWidth);
     newTime = cur_song_audio.duration * newTime_percent;
     cur_song_audio.currentTime = newTime;
     // Update the width of the progress line and position of the dot
