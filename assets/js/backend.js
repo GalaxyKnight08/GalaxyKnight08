@@ -1,732 +1,540 @@
-*{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
-}
-html{
-    font-family: Arial, Helvetica, sans-serif;
-}
-#header {
-    position: fixed;
-    top:0;
-    left: 0;
-    right:0;
-    height: 46px;
-    background-color: black;
-    z-index: 1;
-    /* display: none; */
-}
-#nav > li{
-    display: inline-block;
-    position: relative;
-}
-#nav .subnav {
-    display: none;
-    color: black;
-    position: absolute;
-    box-shadow: 5px 10px 10px rgba(0,0,0,0.5);
-    background-color: white;
-    list-style-type: none;
-}
-#nav li:hover .subnav{
-    display: block;
-    /* Initial state with transparent shadow */
-}
-.box_shadow_hover_to_aqua:hover,
-#nav .subnav:hover {
-    transition: box-shadow 0.5s ease-out;
-    box-shadow: 10px 10px 10px rgb(0, 255, 255,1);
-}
-#nav .subnav li a{
-    text-decoration: none;
-    width: 100%;
-    padding: 10px 20px; 
-    display: inline-block;    
-    color: black;
-}
-#nav > li > a{
-    color:white;
-    text-decoration: none;
-    line-height: 46px;
-    padding: 0 24px;
-    display: inline-block;
-    text-transform: uppercase;
-}
-#nav li:hover > a{
-    display: inline-block;
-}
-#header .search-btn{
-    position: absolute;
-    color: white;
-    height: 46px;
-    line-height: 46px;
-    padding: 0 24px;
-    top:0;
-    right:0;
-    cursor: pointer;
-}
-#content .sec_5 .contact_box_cell .message .submit_btn:hover,
-#header .search-btn:hover,
-#nav li:hover > a,
-#content .Modal_img_cell .close:hover{
-    color:black;
-    background-color: #ccc;
-} 
-/* {
-    margin-top: 46px;
-    position: relative;
-    width: 100%;
-    height: 95vh;
-    background-color: black;
-    /* height: 590px;
-}*/
-.MySlide{
-   width: 100%;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
-   position: relative;
-   top:0;
-   bottom:0;
-   height: 100vh;
 
-   /* filter: brightness(40%); */
-}
-.display_1{
-    background-image: url('../img/no_guns_life_1.jpg');
-}
-.display_2{
-    background-image: url('../img/no_guns_life_2.jpg');
-}
-.display_3{
-    background-image: url('../img/Dalat_2017.jpg');
-}
-.display_4{
-    background-image: url('../img/no_guns_life_4.jpg');
-}
-.MySlide .brightness_cover{
-    background-color: rgba(0,0,0,0.5);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right:0;
-}
-.MySlide .brightness_cover .text_content{
-    color: white;
-    text-align: center;
-    padding-top: 60vh;
-    font-family: "Edu VIC WA NT Beginner";
-    font-weight: 100;
-} 
-.MySlide .brightness_cover p{
-     font-size: 24px;
-     padding-top: 12px;
-     padding-bottom: 12px;
-     /* position: absolute; */
-     height: 50%;
-}
-.MySlide .brightness_cover  h1{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 92px;
-    font-weight: 100;
-    /* height: 50%; */
-    /* size: landscape; */
-    /* text-align: center; */
-}
-#content {
-    position: relative;
-}
-#content .sec_1, #content .sec_5 {
-    background-color: white;
-    color:black;
-}
-#content .content_section{
-    /* position: absolute; */
-    text-align: center;
-    width: 100%;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    /* bottom:0; */
-}
-#content .sec_1 .message, #content .content_section .title, #content .content_section .sub_title{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-#content .content_section .sub_title{
-    color: gray;
-    font-style: italic;
-}
-#content .content_section .title{
-    font-weight: 100;
-}
-#content .sec_1 .message{
-    text-align: justify;
-    padding-right: 12%;
-    padding-left: 12%;
-}
-#content .sec_2, #content .sec_4{
-    background-color: black;
-    color:white;
-    /* top:100%; */
-}
-#content .sec_2 .places{
-    padding-left: 12px;
-    padding-right: 12px;
-}
-#content .sec_2 .places .place,
-#content .sec_4 .playlist .music_box{
-    display: inline-block;
-    background-color: black;
-    color: white;
-    padding: 12px 0px 10px 0px;
-    margin: 16px;
-    width: 300px;
-}
-#content .sec_2 .places .time{
-    color: gray;
-    font-weight: 100;
-}
-/* #content .sec_2 .places img{
-    width: 100%;
-} */
-#content .sec_2 .places img:hover {
-    opacity: 0.6;
-    cursor:pointer;
-}
-#content .sec_2 .places .place .place_title,
-#content .sec_2 .places .place .time, 
-#content .sec_2 .places .place .place_description {
-    padding:12px 10px;
-    text-align: left;
-}
-#content .Modal_img_cell{
-    position: fixed;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    display: none;
-}
-#content .Modal_img_cell img{
-    display: block;
-    width: 80%;
-    /* margin-left: 21%; */
-    /* height: 70%; */
-    margin: auto;
-    max-width: 700px;
-    padding-top: 10vh;
-}
-#content .Modal_img_cell .close{
-    font-size: 40px;
-    position: absolute;
-    color: white;
-    right: 0px;
-    top: 0px;
-    cursor: pointer;
-    transition: 0.3s;
-    padding:0px 20px;
-}
-.sec_3{
-    padding: 36px 72px 0px 72px;
-}
-.sec_3 .tabs {
-    display: flex;
-    position: relative;
-  }
-.sec_3 .tabs .line {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 6px;
-    border-radius: 15px;
-    background-color: black;
-    transition: all 0.2s ease;
-  }
-.sec_3 .tab-item {
-    min-width: 80px;
-    padding: 16px 20px 11px 20px;
-    font-size: 20px;
-    text-align: center;
-    color: black;
-    background-color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom: 5px solid transparent;
-    opacity: 0.6;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    width: calc(100%/3);
-  }
-.sec_3 .tab-icon {
-    font-size: 24px;
-    width: 32px;
-    position: relative;
-    top: 2px;
-  }
-.sec_3 .tab-item p{
-    display: block;
-    padding-top: 4px;
-}
-.sec_3 .tab-item:hover,
-#content .sec_4 .mini_music_player .control_btn i:hover {
-    opacity: 1;
-    background-color: rgba(53, 166, 194, 0.1);
-    border-color: rgba(53, 166, 194, 0.1);
-  }
-.sec_3 .tab-item.active {
-    opacity: 1;
-  }
-.sec_3 .tab-content {
-    padding: 28px 0;
-    text-align: center;
-  }
-.sec_3 .tab-pane {
-    color: #333;
-    display: none;
-  }
-.sec_3  .tab-pane.active {
-    display: block;
-  }
-.sec_3  .tab-pane h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
-#content .sec_4 .playlist {
-    display: inline-block;
-    position: relative;
-}
-#content .sec_4 .playlist .list_changing{
-    width: 5%;
-    font-size: 40px;
-    display: block;
-    cursor: pointer;
-    /* position: absolute; */
-    /* top: 0; */
-    transition: text-shadow 0.5s ease;
-    padding: 12px 0px;
-}
-#content .sec_4 .playlist .list_changing .fa-chevron-right{
-    right: 40%;
-    position: absolute;
-    bottom: 0;
-} 
-#content .sec_4 .playlist .list_changing .fa-chevron-left{
-    left: 40%;
-    position: absolute;
-    bottom: 0;
-}
-#content .sec_4 .playlist .list_changing .fa-chevron-up,
-#content .sec_4 .playlist .list_changing .fa-chevron-down{
-    display: none;
-}
-.light-hover:hover{
-    text-shadow: 0px 0px 8px rgb(255, 255, 255);
-}
-.light-active{
-    text-shadow: 0px 0px 8px rgb(255, 255, 255);
-}
-#content .sec_4 .playlist .music_box {
-    text-align: left;
-    /* width: calc(90%/3); */
-    border-radius: 30px;
-    /* transition: all 5s ease; */
-}
-#content .sec_4 .playlist .music_box .play_btn {
-    height: 300px;
-    padding-top: 20px;
-    width: 100%;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 30px;
-}
-#content .sec_4 .playlist .music_box .play_btn div{
-    height: 80%;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-}
-#content .sec_4 .playlist .music_box .play_btn i {
-    font-size: 120px;
-    text-align: center;
-    transition: color 0.5s ease;
-    display: none;
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    bottom: 25%;
-    right: 25%;
-    /* z-index: 1; */
-}
+/*Tab UI*/
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
-#content .sec_4 .playlist .music_box .play_btn:hover div{
-    opacity: 0.6;
-}
-#content .sec_4 .playlist .music_box .play_btn:hover i {
-    display: block; 
-}
-#content .sec_4 .playlist .music_box .play_btn i:hover {
-    color: aqua; 
-}
-#content .sec_4 .playlist .music_box h3,
-#content .sec_4 .playlist .music_box h4
-{
-    padding: 12px 0px 12px;
-}
-#content .sec_4 .playlist .music_box h4{
-    font-weight: 100;
-}
-#content .sec_4 .mini_music_player{
-    box-shadow: 0px 00px 10px 10px rgba(0,0,0,0.5);
-    position: fixed;
-    height: 10vh;
-    z-index: 1;
-    bottom: 8px;
-    left: 1%;
-    background-color: white;
-    width: 98%;
-    display: none;
-    cursor: pointer;
-}
-#content .sec_4 .mini_music_player img{
-    height: 100%;
-}
-#content .sec_4 .mini_music_player .text_content{
-    color: black;
-    padding: 2vh 12px 2vh 12px;
-    width: 100%;
-    text-align: left;
-    overflow: hidden;
-}
+const tabs = $$(".sec_3 .tab-item");
+const panes = $$(".sec_3 .tab-pane");
 
-#content .sec_4 .mini_music_player .control_btn{
-    display: flex;
-}
-#content .sec_4 .mini_music_player .control_btn i{
-    color: gray;
-    font-size: 6vh;
-    padding: 2vh 12px 2vh 12px;
-    cursor: pointer;
-}
+var tabActive = $(".sec_3 .tab-item.active");
+const line = $(".sec_3 .tabs .line");
+var slider = $("#slider");
+var page_contents = $("#content");
+var footer = $("#footer");
+var sunset_img = $(".sunset");
+requestIdleCallback(function () {
+  line.style.left = tabActive.offsetLeft + "px";
+  line.style.width = tabActive.offsetWidth + "px";
+});
 
-#content .sec_5 .contact_box_cell .contact_box{
-    display: inline-block;
-    width: 300px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-#content .sec_5 .contact_box_cell .information{
-    text-align: left;
-}
-#content .sec_5 .contact_box_cell .information .info{
-    font-weight: 100;
-}
-#content .sec_5 .contact_box_cell .information .info i{
-    font-size: 16px;
-    width: 28px;
-}
-#content .sec_5 .contact_box_cell .message li input{
-    font: inherit;
-    /* border-block-color: aqua; */
-    border: 1px;
-    border-style: solid;
-    border-color: gray;
-    padding: 10px;
-}
-#content .sec_5 .contact_box_cell .message .contact_message{
-    list-style: none;
-}
-#content .sec_5 .contact_box_cell .message .contact_message li textarea
-{
-    width: 100%;
-    display: block;
-    overflow: hidden;
-    resize: none;
-}
+tabs.forEach((tab, index) => {
+  const pane = panes[index];
 
-#content .sec_5 .contact_box_cell
-{
-    padding-top: 20px;
-}
-#content .sec_5 .contact_box_cell .message .contact_message .li_name,
-#content .sec_5 .contact_box_cell .message .contact_message .li_email
-{
-    display: inline-block;
-    width: 50%;
-    float: left;
-    padding-bottom: 8px;
-}
-#content .sec_5 .contact_box_cell .message .submit_btn{
-    color: white;
-    background-color: black;
-    margin-top: 16px;
-    float: right;
-    padding: 10px;
-    cursor:pointer;
-    border: 0;
-}
-#footer{
-    text-align: center;
-    padding-top: 84px;
-    padding-bottom: 84px;
-    background-color: black;
-}
-#footer a{
-    font-size: 28px;
-    color: white;
-}
-#footer h2{
-    padding-top: 12px;
-    font-weight: 100;
-    font-size: 16px;
-    color: white;
-}
-#footer a:hover{
-    color: aqua;
-}
-.sunset{
-    width: 100%;
-    display: block;
-}
-.img_100_percent {
-    width:100%;
-}
-@media (max-width: 668px){
-    #content .sec_4 .playlist .list_changing .fa-chevron-down{
-        width: 100%;
-        right: 0;
-        text-align: center;
-        font-size: 60px;
-        display: block;
-        position: absolute;
-    } 
-    #content .sec_4 .playlist .list_changing .fa-chevron-up{
-        top: 0;
-        width: 100%;
-        text-align: center;
-        left: 0;
-        font-size: 60px;
-        display: block;
-        position: absolute;
+  tab.onclick = function () {
+    $(".sec_3 .tab-item.active").classList.remove("active");
+    $(".sec_3 .tab-pane.active").classList.remove("active");
+
+    line.style.left = this.offsetLeft + "px";
+    line.style.width = this.offsetWidth + "px";
+
+    this.classList.add("active");
+    pane.classList.add("active");
+    tabActive = $(".sec_3 .tab-item.active");
+  };
+});
+window.addEventListener('resize',() => {
+  console.log("abc")
+  
+  line.style.left = tabActive.offsetLeft + "px";
+  line.style.width = tabActive.offsetWidth + "px";
+  console.log(tabActive.offsetLeft + "px");
+  console.log(tabActive);
+  
+  const tab_item_titles = $$(".sec_3 .tab-item p");
+  tab_item_titles.forEach((tab_item_title) =>{
+    if(window.innerWidth < 572){
+      tab_item_title.style.display = "none";
     }
-    #content .sec_4 .playlist .list_changing .fa-chevron-left,
-    #content .sec_4 .playlist .list_changing .fa-chevron-right{
-        display: none;
+    else{
+      tab_item_title.style.display = "block";
     }
+  })
+  // if(window.innerWidth < 668){
+  //   left_changing_btn.classList.remove("fa-chevron-left");
+  //   left_changing_btn.classList.add("fa-chevron-up")
+  //   right_changing_btn.classList.remove("fa-chevron-right");
+  //   right_changing_btn.classList.add("fa-chevron-down");
+  // }
+  // else{
+  //   left_changing_btn.classList.remove("fa-chevron-up");
+  //   left_changing_btn.classList.add("fa-chevron-left")
+  //   right_changing_btn.classList.remove("fa-chevron-down");
+  //   right_changing_btn.classList.add("fa-chevron-right");
+  // }
+});
+
+/*Render Tab*/
+/*Music player*/
+const playlist = [
+  {
+    name: "Xe độ",
+    artist: "Cậu Phát ft. CCMK",
+    path: "/music/CẬU PHÁT - Xe Độ ft. CCMK - CHÁY PHỐ 7 TÌNH EP.mp3",
+    img: "/music_img/xe độ.jpg" 
+  },
+  {
+    name: "Dám",
+    artist: "Hưng Cao ft. Khánh x Hoàng AT",
+    path: "/music/DÁM - HƯNG CAO ft Khánh x Hoàng AT.mp3",
+    img: "/music_img/dám.jpg" 
+  },
+  {
+    name: "Góc nhìn khác",
+    artist: "Hazel",
+    path:"/music/[DRILLINTHELIFE] 2. GÓC NHÌN KHÁC - HAZEL (Prod. Minh Vũ) - OFFICIAL LYRIC VIDEO.mp3",
+    img: "/music_img/góc nhìn khác.jpg" 
+  },
+  {
+    name: "Live while we're young",
+    artist: "One Direction",
+    path: "/music/One Direction - Live While We're Young (Audio).mp3",
+    img: "/music_img/live while we re young.jpg" 
+  },
+  {
+    name: "Souls",
+    artist: "Datmaniac",
+    path: "/music/Datmaniac - Souls.mp3",
+    img: "/music_img/souls-datmaniac.jpg" 
+  },
+  {
+    name: "New World",
+    artist: "THIS IS JAPAN",
+    path: "/music/THIS IS JAPANnew worldMV.mp3",
+    img: "/music_img/no guns life.jpg" 
+  }
+]
+
+var myplaylist = $('#myplaylist');
+var music_boxes = myplaylist.querySelectorAll('.music_box');
+var mini_music_player = myplaylist.querySelector('.mini_music_player');
+var mini_music_player_img = mini_music_player.querySelector('img');
+var mini_music_player_control_btn = mini_music_player.querySelector('.control_btn');
+var mini_music_player_close_btn = mini_music_player_control_btn.querySelector('.close_btn');
+var mini_music_player_play_btn = mini_music_player_control_btn.querySelector('.play_btn');
+var music_player_full_scr = $('#music_player');
+var cur_song_audio = music_player_full_scr.querySelector("#audio");
+var AudioIsRunning = false;
+render_music_boxes(0);
+/*Playlist changing */
+
+var right_changing_btn = myplaylist.querySelector('.list_changing.right');
+var left_changing_btn = myplaylist.querySelector('.list_changing.left');
+console.log(left_changing_btn);
+var idx = 0;
+left_changing_btn.onclick = function() {
+  idx--;
+  if(idx < 0){
+    idx = playlist.length + idx;
+  }
+  // console.log(idx);
+  render_music_boxes(idx);
+};
+right_changing_btn.onclick = function () {
+  idx++;
+  if(idx === playlist.length){
+    idx = 0;
+  }
+  // console.log(idx);
+  render_music_boxes(idx);
+};
+function render_music_boxes(idx){
+  for(var i = 0; i < 3; i++){
+    var idx_render_music_box = (i+idx) % playlist.length;
+    music_boxes[i].innerHTML = `
+      <div class="play_btn ${idx_render_music_box}">
+        <div style="background-image: url('./assets${playlist[idx_render_music_box].img}')"></div>
+        <i class="fa-regular fa-circle-play"></i>
+      </div> 
+      <h3 class="name">${playlist[idx_render_music_box].name}</h3>
+      <h4 class="artist">${playlist[idx_render_music_box].artist}</h4>
+    `
+    // console.log(playlist[idx_render_music_box].img);
+    // console.log(playlist[idx_render_music_box].name);
+    // console.log(playlist[idx_render_music_box].artist);
+  }
+  music_boxes.forEach((music_box) => {
+    var music_box_play_btn_wrapper = music_box.querySelector('.play_btn');
+    var music_box_play_btn = music_box.querySelector('.play_btn i');
+    var cur_idx = music_box_play_btn_wrapper.classList[music_box_play_btn_wrapper.classList.length - 1];
+    // console.log(music_box_play_btn);
+    music_box_play_btn.onclick = () =>{
+      play_audio(cur_idx);
+      render_music_player(cur_idx);
+    }
+  });
+}
+/*Play audio*/
+function play_audio(cur_idx) {
+  if(cur_idx == playlist.length){
+    cur_idx = 0;
+  }
+  if (cur_idx < 0){
+    cur_idx = playlist.length - 1;
+  }
+    var song_audio_path = playlist[cur_idx].path;
+    cur_song_audio.src = "./assets" + song_audio_path;
+    cur_song_audio.play();
+    if(mini_music_player.style.display === "flex"){
+      render_mini_music_player(cur_idx);
+    }
+    else if(music_player_full_scr.style.display === "block"){
+      render_music_player(cur_idx);
+    }
+}
+/*Mini music player*/
+
+mini_music_player_img.onclick = () => {
+  render_music_player(idx);
+}
+/*Close mini music player */
+mini_music_player_close_btn.onclick = () =>{
+  cur_song_audio.pause();
+  mini_music_player.style.display = 'none';
+};
+
+/*Play/pause on mini music player */
+
+mini_music_player_play_btn.onclick = () => {
+  // console.log(mini_music_player_play_btn);
+  if(mini_music_player_play_btn.classList[mini_music_player_play_btn.classList.length - 1]==='fa-pause'){
+    cur_song_audio.pause();
+    mini_music_player_play_btn.classList.remove('fa-pause');
+    mini_music_player_play_btn.classList.add('fa-play');
+    music_player_full_scr_pause_btn.classList.remove('fa-pause');
+    music_player_full_scr_pause_btn.classList.add('fa-play');
+  }
+  else{
+    cur_song_audio.play();
+    mini_music_player_play_btn.classList.remove('fa-play');
+    mini_music_player_play_btn.classList.add('fa-pause');
+    music_player_full_scr_pause_btn.classList.remove('fa-play');
+    music_player_full_scr_pause_btn.classList.add('fa-pause');
+  }
+}
+/*Render mini_music_player */
+function render_mini_music_player (cur_idx) {
+  if(cur_idx == playlist.length){
+    cur_idx = 0;
+  }
+  if (cur_idx < 0){
+    cur_idx = playlist.length - 1;
+  }
+      mini_music_player.style.display = 'flex';
+      // console.log(playlist[cur_idx]);
+      var name = playlist[cur_idx].name;
+      var artist = playlist[cur_idx].artist;
+      var img_url = playlist[cur_idx].img;
+      mini_music_player.querySelector('.name').innerText = name;
+      mini_music_player.querySelector('.artist').innerText = artist;
+      mini_music_player.querySelector('img').src = './assets' + img_url;
+};
+/*Music player full scr*/
+var music_player_full_scr_close_controller = music_player_full_scr.querySelector('.close_btn');
+var music_player_full_scr_close_btn = music_player_full_scr_close_controller.querySelector('.fa-xmark');
+var music_player_full_scr_minimize_btn = music_player_full_scr_close_controller.querySelector('.fa-chevron-down');
+var music_player_full_scr_controller = music_player_full_scr.querySelector('.controller');
+var music_player_full_scr_pause_btn = music_player_full_scr_controller.querySelector('.fa-pause');
+var music_player_full_scr_changing_backward_btn = music_player_full_scr_controller.querySelector('.fa-backward-step');
+var music_player_full_scr_changing_forward_btn = music_player_full_scr_controller.querySelector('.fa-forward-step');
+var music_player_full_scr_replay_btn = music_player_full_scr_controller.querySelector('.fa-repeat');
+var music_player_full_scr_shuffle_btn = music_player_full_scr_controller.querySelector('.fa-shuffle');
+var music_player_full_scr_list_btn = music_player_full_scr_controller.querySelector('.fa-list-ul');
+var music_player_full_scr_sublist = music_player_full_scr.querySelector('.sub-playlist');
+var isShuffle = false;
+var isReplay = false;
+/*Music_player_full_scr_close_controller */
+music_player_full_scr_list_btn.onclick = () => {
+  if(music_player_full_scr_list_btn.classList
+    [music_player_full_scr_list_btn.classList.length - 1] !== "light-active"){
+    music_player_full_scr_sublist.style.display = 'block';
+    music_player_full_scr_list_btn.classList.add('light-active');
+    playlist.forEach((song) => {
+      var sub_playlist_content = document.querySelector('.sub-playlist-content');
+      var newSongHTML = `
+          <li class="list-item">
+              <div class="img" style="background-image: url('./assets${song.img}')"></div>
+              <div class="text_content">
+                  <h3 class="name height_50_percent ">${song.name}</h3>
+                  <h4 class="artist height_50_percent">${song.artist}</h4>
+              </div>
+          </li>
+      `
+      sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
+    })
+    active_vinyl(idx);
+    var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
+    song_sub_playlist.forEach((song, idx) => {
+      song.onclick = () => {
+        play_audio(idx);
+      }
+    })
+  }
+  else{
+    music_player_full_scr_sublist.style.display = 'none';
+    music_player_full_scr_list_btn.classList.remove('light-active');
+  }
+}
+function active_vinyl(cur_idx){
+  var active_vinyl = document.querySelector('.list-item .img.active_animation');
+  if(active_vinyl !== null){
+    active_vinyl.classList.remove('active_animation');
+  }
+  var vinyls = document.querySelectorAll('.list-item .img');
+  vinyls[cur_idx].classList.add('active_animation');
+  // console.log(vinyls);
+}
+music_player_full_scr_minimize_btn.onclick = () => {
+  var cur_idx_music_player_full_scr = music_player_full_scr.classList[music_player_full_scr.classList.length - 1];
+  slider.style.display = "block";
+  page_contents.style.display = "block";
+  sunset_img.style.display = "block";
+  footer.style.display = "block";
+  render_mini_music_player(cur_idx_music_player_full_scr);
+  music_player_full_scr.style.display = 'none';
+}
+music_player_full_scr_close_btn.onclick = () => {
+  slider.style.display = "block";
+  page_contents.style.display = "block";
+  sunset_img.style.display = "block";
+  footer.style.display = "block";
+  cur_song_audio.pause();
+  music_player_full_scr.style.display = 'none';
+}
+/*Music_player_full_scr_controller */
+music_player_full_scr_pause_btn.onclick = () =>{
+  // console.log(music_player_full_scr_pause_btn.classList);
+  var active_vinyl = document.querySelector('.list-item .img.active_animation');
+  if(music_player_full_scr_pause_btn.classList[music_player_full_scr_pause_btn.classList.length - 1]==='fa-pause'){
+    cur_song_audio.pause();
+    music_player_full_scr_pause_btn.classList.remove('fa-pause');
+    music_player_full_scr_pause_btn.classList.add('fa-play');
+    if(active_vinyl !== null){
+      active_vinyl.style.animationPlayState = 'paused';
+    }
+  }
+  else{
+    cur_song_audio.play();
+    music_player_full_scr_pause_btn.classList.remove('fa-play');
+    music_player_full_scr_pause_btn.classList.add('fa-pause');
+    if(active_vinyl !== null){
+      active_vinyl.style.animationPlayState = 'running';
+    }
+  }
+}
+// console.log(light_active);
+console
+function render_music_player(cur_idx){
+ 
+  if(cur_idx == playlist.length){
+    cur_idx = 0;
+  }
+  if (cur_idx < 0){
+    cur_idx = playlist.length - 1;
+  }
+  if(music_player_full_scr_sublist.style.display === 'block'){
+    active_vinyl(cur_idx);
+  }
+  // console.log(playlist[cur_idx]);
+    slider.style.display = "none";
+    page_contents.style.display = "none";
+    sunset_img.style.display = "none";
+    footer.style.display = "none";
+    music_player_full_scr.style.display = 'block';
+  if(music_player_full_scr_pause_btn.classList[music_player_full_scr_pause_btn.classList.length - 1]==='fa-play'){
+    music_player_full_scr_pause_btn.classList.remove('fa-play');
+    music_player_full_scr_pause_btn.classList.add('fa-pause');
+  }
+  var name = playlist[cur_idx].name;
+  var artist = playlist[cur_idx].artist;
+  var img_url = playlist[cur_idx].img;
+  if(!isNaN(music_player_full_scr.classList[music_player_full_scr.classList.length -1])){
+    music_player_full_scr.classList.remove(music_player_full_scr.classList[music_player_full_scr.classList.length -1]);
+  }
+  music_player_full_scr.classList.add(`${cur_idx}`);
+  music_player_full_scr.querySelector('.info .info_text').innerText = name + ' - ' +artist;
+  // console.log(music_player_full_scr.querySelector('.img'));
+  music_player_full_scr.querySelector('.img').style.backgroundImage = `url('./assets${img_url}')`;
+  music_player_full_scr_shuffle_btn.onclick = () => {
+    if(!isShuffle){
+      music_player_full_scr_shuffle_btn.classList.add('light-active');
+      isShuffle = true;
+    }
+    else{
+      music_player_full_scr_shuffle_btn.classList.remove('light-active');
+      isShuffle = false;
+    }
+    music_player_full_scr_mode(cur_idx);
+  }
+  music_player_full_scr_replay_btn .onclick = () => {
+    if(!isReplay){
+      music_player_full_scr_replay_btn.classList.add('light-active');
+      isReplay = true;
+    }
+    else{
+      music_player_full_scr_replay_btn.classList.remove('light-active');
+      isReplay = false;
+    }
+    music_player_full_scr_mode(cur_idx);
+  }  
+  music_player_full_scr_mode(cur_idx);
+  //cur_idx++;
+  music_player_full_scr_changing_forward_btn.onclick = () => {
+    idx = ++cur_idx;
+    play_audio(idx);
+    // render_music_player(idx);
+  }
+  music_player_full_scr_changing_backward_btn.onclick = () => {
+    idx = cur_idx - 1; 
+    play_audio(idx);
+    // render_music_player(idx);
+  }
+  boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container 
+}
+function music_player_full_scr_mode(cur_idx){
+  // console.log(cur_idx);
+  if(isReplay === true && isShuffle === false){
+    // console.log("replay");
+    cur_song_audio.onended = () => {
+      
+      idx = cur_idx; 
+      play_audio(cur_idx);
+    }
+  }
+  else if(isReplay === false && isShuffle === true){
+    var old_cur_idx = cur_idx;
+    do {
+      cur_idx = Math.floor(Math.random() * playlist.length); // Generate a random index
+    } while (old_cur_idx === cur_idx);
+    // console.log("shuffle " + cur_idx);
+    cur_song_audio.onended = () => {
+     
+      idx = cur_idx; 
+      play_audio(cur_idx);
+    }
+  }
+  else if(isReplay === true && isShuffle === true){
+    // console.log("shuffle n replay");
+    cur_song_audio.onended = () => {
+      cur_song_audio.play();
+      var old_cur_idx = cur_idx;
+      do {
+        cur_idx = Math.floor(Math.random() * playlist.length); // Generate a random index
+      } while (old_cur_idx === cur_idx);
+      // console.log("shuffle n replay " + cur_idx);
+      cur_song_audio.onended = () => {
+       
+        idx = cur_idx; 
+        play_audio(cur_idx);
+      }
+    }
+  }
+  else{
+    // console.log("sequentially")
+    cur_idx++;
+    cur_song_audio.onended = () => {
+      
+      idx = cur_idx; 
+      play_audio(cur_idx);  
+    }
+  }
+}
+/*Progress-line */
+var progress_line_box = document.querySelector('.progress-line-box');
+var progress_line = document.querySelector('.progress-line');
+var progress_dot = document.querySelector('.progress-dot');
+var timePassed = document.querySelector('.time-passed');
+var timeTotal = document.querySelector('.time-total');
+var boxWidth = progress_line_box.offsetWidth - 4;
+// console.log(progress_line_box);
+// Set initial width of progress line and position of progress dot
+progress_line.style.width = '0px';
+progress_dot.style.left = '0px';
+
+var isDragging = false; // Flag to track dragging state
+// Update total duration display when cur_song_audio metadata is loaded
+cur_song_audio.onloadedmetadata = function() {
+    var duration = cur_song_audio.duration;
+    timeTotal.textContent = formatTime(duration);
+};
+
+// Update progress line and time display as cur_song_audio plays
+cur_song_audio.ontimeupdate = function() {
+    if (!isDragging) {
+        var currentTime = cur_song_audio.currentTime;
+        var duration = cur_song_audio.duration;
+        var percentage = currentTime / duration;
+        var cur_width = boxWidth * percentage;
+        // console.log(percentage);
+        // console.log(cur_width);
+        progress_line.style.width = cur_width + "px";
+        progress_dot.style.left = cur_width + "px";
+        timePassed.textContent = formatTime(currentTime);
+    }
+    var active_vinyl = document.querySelector('.list-item .img.active_animation');
+    if(active_vinyl){
+      var cur_angle = 16 * 360 * (cur_song_audio.currentTime / cur_song_audio.duration);
+      // console.log(cur_angle);
+      active_vinyl.style.transform = `rotate(${cur_angle}deg)`
+    }
+};
+
+// Format time in MM:SS format
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// Function to update the progress line width and seek cur_song_audio position
+function updateProgressLine(event) {
+    var rect = progress_line_box.getBoundingClientRect();
+    var x = event.clientX - rect.left; // Calculate x relative to the container
+    // Ensure x does not exceed the width of the container
+    if (x >= boxWidth) {
+        x = boxWidth;
+    }
+
+    // Calculate the new time and update cur_song_audio
+    var newTime_percent = x / boxWidth;
+    // console.log(newTime_percent); // Set the new current time for the cur_song_audio
+    // console.log(x);
+    // console.log(boxWidth);
+    newTime = cur_song_audio.duration * newTime_percent;
+    cur_song_audio.currentTime = newTime;
+    // Update the width of the progress line and position of the dot
+    progress_line.style.width = x + "px";
+    progress_dot.style.left = x + "px";
     
+    timePassed.textContent = formatTime(newTime);
 }
-@media (min-width: 568px) {
-    #header.full {
-        display: block;
-    }
-    #header.hide_1_nav {
-        display: none;
-    }
-    #header.hide_2_nav {
-        display: none;
-    }
-    #header.hide_3_nav {
-        display: none;
-    }
+window.onresize = () => {
+    boxWidth = progress_line_box.offsetWidth - 4;
+    // console.log(boxWidth);
+    progress_line.style.width = boxWidth * (cur_song_audio.currentTime / cur_song_audio.duration) + "px";
+    progress_dot.style.left = boxWidth * (cur_song_audio.currentTime / cur_song_audio.duration) + "px";
 }
-@media (max-width: 567px) {
-    #header.full {
-        display: none;
-    }
-    #header.hide_1_nav {
-        display: block;
-    }
-    #header.hide_2_nav {
-        display: none;
-    }
-    #header.hide_3_nav {
-        display: none;
-    }
-}
-@media (max-width: 471px) {
-    #header.full {
-        display: none;
-    }
-    #header.hide_1_nav {
-        display: none;
-    }
-    #header.hide_2_nav {
-        display: block;
-    }
-    #header.hide_3_nav {
-        display: none;
-    }
-}
-@media (max-width: 375px) {
-    #header.full {
-        display: none;
-    }
-    #header.hide_1_nav {
-        display: none;
-    }
-    #header.hide_2_nav {
-        display: none;
-    }
-    #header.hide_3_nav {
-        display: block;
-    }
-}
-#music_player {
-    position: absolute;
-    top: 0;
-    /* height: 100%; */
-    width: 100%;
-    z-index: 2;
-    background-color: black;
-    display: none;
-    color: white;
-    text-align: center;
-}
-#music_player .player-box{
-    position: relative;
-    height: 90vh;
-}
-#music_player .player-box .img{
-    position: absolute;
-    right: 12%;
-    left: 12%;
-    top: 0%;
-    bottom: 32%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-}
-#music_player .player-box .info{
-    position: absolute;
-    /* width: 100%; */
-    bottom: 20%;
-    right: 12%;
-    left: 12%;
-    overflow: hidden; 
-}
-.text-animation{
-    /* overflow: hidden;  */
-    white-space: nowrap; 
-    animation: marquee 15s linear infinite;
-    /* animation-play-state: paused; */
-}
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-#music_player .player-box .progress-line-box {
-    position: absolute;
-    height: 10px;
-    background-color: white;
-    left: 16%;
-    right: 16%;
-    bottom: 16%;
-    border-radius: 30px;
-    cursor: pointer;
-}
-#music_player .player-box .progress-line-box .progress-line {
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    bottom: 2px;
-    background-color: aqua;
-    border-radius: 30px;
-}
-#music_player .player-box .progress-line-box .progress-dot {
-    height: 100%;
-    aspect-ratio: 2/1;
-    background-color: #ccc;
-    position: absolute;
-    border-radius: 30px;
-    display: none;
-    transition: all 0.1s ease;
-}
-#music_player .player-box .progress-line-box .progress-dot .duration-box {
-    color: white;
-    position: absolute;
-    top: -24px;
-    right: -24px;
-}
-#music_player .player-box .progress-line-box:hover .progress-dot {
-    display: block;
-}
-#music_player .player-box .controller{
-    position: absolute;
-    bottom: 4%;
-    width: 100%;
-}
-#music_player .player-box .controller i{
-    font-size: 200%;
-    padding: 0px 16px;
-    cursor: pointer;
-    transition: text-shadow 0.5s ease;
-}
-#music_player .close_btn{
-    text-align: right;
-    height: 10vh;
-}
-#music_player .close_btn i{
-    font-size: 240%;
-    padding: 16px 16px;
-    cursor: pointer;
-}
-#music_player .close_btn i:hover{
-    color: black;
-    background-color: #ccc;
-}
-#music_player .sub-playlist{
-    text-align: left;
-    display: none;
-}
-#music_player .sub-playlist li{
-    height: 10vh;
-    /* width: 100%; */
-    display: flex;
-    margin: 12px;
-    cursor: pointer;
-}
-#music_player .sub-playlist li .img{
-    height: 100%;
-    /* width: 1vh; */
-    aspect-ratio: 1/1;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 100%; /* Make the image round */
-    animation: spin 5s linear infinite; /* Animation for spinning */
-    animation-play-state: paused; /* Start with spinning paused */
-    transition: all 0.5s ease-out;
-}
-#music_player .sub-playlist li .img.active_animation{
-    animation-play-state: running;
-}
-#music_player .sub-playlist li .text_content {
-    /* position: relative; Đảm bảo canvas sẽ là nền của .text_content */
-    overflow: hidden;
-    /* width: 100%; */
-    text-align: left;
-    /* display: flex; */
-    align-items: center;
-    padding: 2vh 12px 2vh 12px;
-}
-/* @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-} */
+// Handle mousedown event on progress_line_box to start dragging
+progress_line_box.addEventListener('mousedown', function(event) {
+    isDragging = true; // Set dragging flag to true
+    updateProgressLine(event); // Update progress line on initial click
+});
 
+// Handle mousemove event on progress_line_box to continue dragging
+progress_line_box.addEventListener('mousemove', function(event) {
+    if (isDragging) { // Only update if dragging
+        updateProgressLine(event);
+    }
+});
+
+// Handle mouseup event on progress_line_box to stop dragging
+document.addEventListener('mouseup', function() {
+    isDragging = false; // Set dragging flag to false
+});
+
+// Handle mouseleave event on progress_line_box to stop dragging when mouse leaves the box
+// progress_line_box.addEventListener('mouseleave', function() {
+//     isDragging = false; // Set dragging flag to false
+// });
+
+/*Close  */
+/*Shuffle */
