@@ -707,7 +707,7 @@ html{
     border-radius: 100%; /* Make the image round */
     animation: spin 5s linear infinite; /* Animation for spinning */
     animation-play-state: paused; /* Start with spinning paused */
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-out;
 }
 #music_player .sub-playlist li .img.active_animation{
     animation-play-state: running;
