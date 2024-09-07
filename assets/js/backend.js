@@ -244,23 +244,15 @@ var isShuffle = false;
 var isReplay = false;
 /*Music_player_full_scr_close_controller */
 music_player_full_scr_list_btn.onclick = () => {
+
   if(music_player_full_scr_list_btn.classList
     [music_player_full_scr_list_btn.classList.length - 1] !== "light-active"){
     music_player_full_scr_sublist.style.display = 'block';
     music_player_full_scr_list_btn.classList.add('light-active');
-    playlist.forEach((song) => {
-      var sub_playlist_content = document.querySelector('.sub-playlist-content');
-      var newSongHTML = `
-          <li class="list-item">
-              <div class="img" style="background-image: url('./assets${song.img}')"></div>
-              <div class="text_content">
-                  <h3 class="name height_50_percent ">${song.name}</h3>
-                  <h4 class="artist height_50_percent">${song.artist}</h4>
-              </div>
-          </li>
-      `
-      sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
-    })
+    let sub_playlist_content_item = document.querySelector('.sub-playlist-content .list-item');
+    if(!sub_playlist_content_item){
+      render_sub_playlist();
+    }
     active_vinyl(idx);
     var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
     song_sub_playlist.forEach((song, idx) => {
@@ -273,6 +265,21 @@ music_player_full_scr_list_btn.onclick = () => {
     music_player_full_scr_sublist.style.display = 'none';
     music_player_full_scr_list_btn.classList.remove('light-active');
   }
+}
+function render_sub_playlist () {
+  playlist.forEach((song) => {
+    var sub_playlist_content = document.querySelector('.sub-playlist-content');
+    var newSongHTML = `
+        <li class="list-item">
+            <div class="img" style="background-image: url('./assets${song.img}')"></div>
+            <div class="text_content">
+                <h3 class="name height_50_percent ">${song.name}</h3>
+                <h4 class="artist height_50_percent">${song.artist}</h4>
+            </div>
+        </li>
+    `
+    sub_playlist_content.insertAdjacentHTML('beforeend',newSongHTML);
+  })
 }
 function active_vinyl(cur_idx){
   var active_vinyl = document.querySelector('.list-item .img.active_animation');
