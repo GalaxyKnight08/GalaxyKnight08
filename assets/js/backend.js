@@ -33,12 +33,12 @@ tabs.forEach((tab, index) => {
   };
 });
 window.addEventListener('resize',() => {
-  console.log("abc")
+  // console.log("abc")
   
   line.style.left = tabActive.offsetLeft + "px";
   line.style.width = tabActive.offsetWidth + "px";
-  console.log(tabActive.offsetLeft + "px");
-  console.log(tabActive);
+  // console.log(tabActive.offsetLeft + "px");
+  // console.log(tabActive);
   
   const tab_item_titles = $$(".sec_3 .tab-item p");
   tab_item_titles.forEach((tab_item_title) =>{
@@ -159,7 +159,7 @@ function render_music_boxes(idx){
     // console.log(music_box_play_btn);
     music_box_play_btn.onclick = () =>{
       play_audio(cur_idx);
-      render_music_player(cur_idx);
+      // render_music_player(cur_idx);
     }
   });
 }
@@ -171,19 +171,29 @@ function play_audio(cur_idx) {
   if (cur_idx < 0){
     cur_idx = playlist.length - 1;
   }
-    var song_audio_path = playlist[cur_idx].path;
-    cur_song_audio.src = "./assets" + song_audio_path;
-    cur_song_audio.play();
-    if(mini_music_player.style.display === "flex"){
-      render_mini_music_player(cur_idx);
-    }
-    else if(music_player_full_scr.style.display === "block"){
-      render_music_player(cur_idx);
-    }
+  var song_audio_path = playlist[cur_idx].path;
+  cur_song_audio.src = "./assets" + song_audio_path;
+  cur_song_audio.play();
+  console.log(music_player_full_scr.style.display);
+  
+  if(mini_music_player.style.display === 'flex'){
+    render_mini_music_player(cur_idx);
+  }
+  else if(music_player_full_scr.style.display === 'block'){
+    console.log("...");
+    render_music_player(cur_idx);
+  }
+  else if(music_player_full_scr.style.display !== 'block' &&
+          mini_music_player.style.display !== 'flex'
+  ){
+    render_music_player(cur_idx);
+  }
 }
 /*Mini music player*/
 
 mini_music_player_img.onclick = () => {
+  // console.log(idx);
+  mini_music_player.style.display = 'none';
   render_music_player(idx);
 }
 /*Close mini music player */
@@ -255,9 +265,10 @@ music_player_full_scr_list_btn.onclick = () => {
     }
     active_vinyl(idx);
     var song_sub_playlist = document.querySelectorAll('.sub-playlist-content li');
-    song_sub_playlist.forEach((song, idx) => {
+    song_sub_playlist.forEach((song, sub_idx) => {
       song.onclick = () => {
-        play_audio(idx);
+        play_audio(sub_idx);
+        idx = sub_idx;
       }
     })
   }
@@ -329,9 +340,9 @@ music_player_full_scr_pause_btn.onclick = () =>{
   }
 }
 // console.log(light_active);
-console
+// console
 function render_music_player(cur_idx){
- 
+  console.log(cur_idx);
   if(cur_idx == playlist.length){
     cur_idx = 0;
   }
@@ -543,5 +554,179 @@ document.addEventListener('mouseup', function() {
 //     isDragging = false; // Set dragging flag to false
 // });
 
-/*Close  */
-/*Shuffle */
+/*Send email */
+let name_field = document.querySelector('.contact_box.message .Guest_name');
+let email_field = document.querySelector('.contact_box.message .Guest_email');
+let message_field = document.querySelector('.contact_box.message .Guest_message'); 
+function send_email() {
+  // Kiểm tra nếu trình duyệt hỗ trợ Geolocation API
+ 
+  if (navigator.geolocation) {
+    // Lấy vị trí hiện tại với hàm callback lỗi
+    navigator.geolocation.getCurrentPosition(
+      function (position) { // Hàm callback khi lấy vị trí thành công
+        let message_cell = {
+          name: name_field.value,
+          email: email_field.value,
+          message: message_field.value,
+          Lat: position.coords.latitude,
+          Long: position.coords.longitude,
+        };
+        console.log(message_cell);
+        if(message_cell.name === '' 
+          || message_cell.email === ''
+          || message_cell.message === ''
+        ){
+          toast_notif("FAILED!","All the field must be filled!","error");
+        }
+        // Gửi email
+        else{
+          emailjs
+            .send("service_b9kuwgs", "template_d8pz6ey", message_cell)
+            .then(
+              function (response) {
+                // console.log("SUCCESS!", response.status, response.text);
+                toast_notif("SUCCESS!", "Your message've been sent successfully!", "success");
+                name_field.value = '';
+                email_field.value = '';
+                message_field.value = '';
+              },
+              function (error) {
+                // console.log("FAILED...", error);
+                toast_notif("FAILED!", "Error!", "error");
+              }
+            );
+        }
+      },
+      function (error) { // Hàm callback khi có lỗi
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            toast_notif("FAILED!","Permission to position've been denied!", "error");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            toast_notif("FAILED!", "Position is unavailable!", "error");
+            break;
+          case error.TIMEOUT:
+            toast_notif("FAILED!","Request time out!", "error");
+            break;
+          case error.UNKNOWN_ERROR:
+            toast_notif("FAILED!","Unknown error!", "error");
+            break;
+        }
+      }
+    );
+  } else {
+    toast_notif("FAILED!","Your brownser doesn't support Geolocation.", "error");
+  }
+}
+function toast_notif(title, notif, type, duration = 3500){
+  var toast_container = document.querySelector('.toasts');
+  var toast = document.createElement('div'); // Tạo thẻ toast bằng createElement
+  toast.className = `toast toast__${type}`; //all type = {error, success}
+  
+  toast.innerHTML = `
+    <div class="toast_icon">
+      <i class="fa-solid ${type === "success" ? "fa-circle-check" : "fa-circle-exclamation"}"></i>
+    </div>
+    <div class="toast_body">
+      <h3 class="toast_title">${title}</h3>
+      <p class="toast_message">${notif}</p>
+    </div>
+    <div class="toast_close">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  `;
+  
+  // Thêm vào container
+  toast_container.appendChild(toast);
+
+  // Sau 3 giây, xóa thẻ toast đi
+  setTimeout(() => {
+    toast.remove(); // Xóa thẻ toast
+  }, duration);
+  
+  // Thêm sự kiện để xóa toast khi click vào nút đóng
+  const closeButton = toast.querySelector('.toast_close');
+  closeButton.onclick = () => {
+    toast.remove();
+  };
+}
+
+const submit_email_btn = document.querySelector('.submit_btn');
+// console.log(submit_email_btn);
+submit_email_btn.onclick = () => send_email();
+
+
+/*validator */
+
+function Validator(option){
+  var formElement = document.querySelector(option.form);
+  console.log(formElement);
+  option.rules.forEach(function(rule) {
+      // console.log(rule);
+      var inputDiv = formElement.querySelector(rule.selector);
+      var inputElement = inputDiv.querySelector('textarea');
+      const const_placeholder = inputElement.placeholder;
+      if(inputElement){
+          inputElement.onblur = () => {
+              // console.log('blur ' + inputElement.value);
+              var errorMessage = rule.condition(inputElement.value);
+              if(errorMessage){
+                  inputDiv.classList.add('invalid');
+                  console.log(inputDiv.classList);
+                  console.log(inputDiv);
+                  inputElement.placeholder = errorMessage;
+                  inputElement.value = '';
+              }
+          }
+          inputElement.onmousedown = () => {
+              var invalid_input_div = formElement.querySelector(rule.selector + '.invalid')
+              console.log(invalid_input_div);
+              if(invalid_input_div){
+                  invalid_input_div.classList.remove('invalid');
+                  inputElement.placeholder = const_placeholder;
+              }
+          }
+      }
+      
+  });
+}
+
+Validator.isRequired = (selector, errorMessage = 'Please fill this blank') => {
+  return{
+      selector: selector,
+      condition: function(value) {
+          return value ? undefined : errorMessage;
+      }
+  }
+}
+
+Validator.isEmail = (selector, errorMessage) => {
+  return{
+      selector: selector,
+      condition: function(value) {
+          var regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+          return regex.test(value) ? undefined : errorMessage;
+      }
+  }
+}
+Validator.MaxLength = (selector, length ,errorMessage) => {
+  return{
+    selector: selector,
+    condition: function(value){
+      return value.length >= length ? toast_notif(`Error!`,`Chỉ nhập tối đa ${length} kí tự`, "error") : undefined
+    }
+  }
+}
+/*char counter */
+let char_counter = $('.char_count');
+message_field.oninput = function() {
+  char_counter.innerText = `${this.value.length}/1000`;
+  if(this.value.length === 1000){
+    char_counter.style.color = `#ff0000`;
+  }
+  else{
+    char_counter.style.color = `#aaa`;
+  }
+} 
+// console.log(char_counter);
