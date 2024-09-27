@@ -5,6 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trung DT</title>
+  <script type="text/javascript" 
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+        emailjs.init({
+            publicKey: "mgVRD7RV_SnIm9eyT",
+        });
+        })();
+    </script>
   <link rel="stylesheet" href="./assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&display=swap" rel="stylesheet">
 </head>
@@ -259,17 +269,25 @@
                 <div class="contact_box_cell">
                     <div class="contact_box information">
                         <h3 class="location info"><i class="fa-solid fa-location-dot"></i> Location: Hanoi, Vietnam</h3>
-                        <h3 class="email info"><i class="fa-solid fa-envelope"></i> Email: mail@mail.com</h3>
-                        <h3 class="phone info"><i class="fa-solid fa-phone"></i> Phone: +0123456789</h3>
+                        <h3  class="email info"><i class="fa-solid fa-envelope"></i> Email: trungduongtat@gmail.com</h3>
+                        <h3 class="phone info"><i class="fa-solid fa-phone"></i> Phone: +84858064325</h3>
                     </div>
                     <div class="contact_box message">
-                        <ul class="contact_message">
-                            <li class="li_name"><textarea type="text" class="Guest_name" placeholder="Your name" name="Guest's_name" required></textarea></li>
-                            <li class="li_email"><textarea type="text" class="Guest_email" placeholder="Email" name="Email" required></textarea></li>
-                            <li class="li_message"><textarea type="text" class="Guest_message" placeholder="Message" name="Guest's_message" required></textarea></li>
-                            <button class="submit_btn box_shadow_hover_to_aqua" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
-                        </ul>
+                        <div class="form_group name ">
+                            <textarea maxlength="100" type="text" class="Guest_name" placeholder="Your name" name="Guest's_name" required></textarea>
+                        </div>
+                        <div class="form_group email ">
+                            <textarea maxlength="320" type="text" class="Guest_email" placeholder="Email" name="Email" required></textarea>
+                        </div>
+                        <div class="form_group message">
+                            <textarea maxlength="1000" type="text" class="Guest_message" placeholder="Message" name="Guest's_message" required></textarea>
+                            <span class="char_count">0/1000</span>
+                        </div>
+                        <button class="submit_btn box_shadow_hover_to_aqua" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
                     </div>
+                </div>
+                <div class="toasts">
+                
                 </div>
             </div>
         </div>
@@ -448,5 +466,17 @@
             window.addEventListener('resize', handleResize);
         </script> -->
         <script src = "assets/js/backend.js"></script>
+        <script src ="assets/js/validator.js"></script>
+        <script>
+            // Validator({
+            //     form: '.contact_box.message',
+            //     rules: [
+            //         Validator.isRequired('.form_group.name','Please fill your name here'),
+            //         Validator.isEmail('.form_group.email', 'Please fill your email here'),
+            //         Validator.isRequired('.form_group.message')
+            //     ]
+            // });
+            // console.log(typeof rules);
+        </script>
     </body>
 </html>
