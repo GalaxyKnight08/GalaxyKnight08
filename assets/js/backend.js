@@ -295,6 +295,7 @@ function render_sub_playlist () {
 function active_vinyl(cur_idx){
   var active_vinyl = document.querySelector('.list-item .img.active_animation');
   if(active_vinyl !== null){
+    active_vinyl.style.transform = `rotate(0deg)`
     active_vinyl.classList.remove('active_animation');
   }
   var vinyls = document.querySelectorAll('.list-item .img');
