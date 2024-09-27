@@ -402,9 +402,9 @@ html{
 #content .sec_4 .mini_music_player .text_content{
     color: black;
     padding: 2vh 12px 2vh 12px;
-    width: 100%;
     text-align: left;
     overflow: hidden;
+    flex-grow: 1;
 }
 
 #content .sec_4 .mini_music_player .control_btn{
@@ -419,59 +419,161 @@ html{
 
 #content .sec_5 .contact_box_cell .contact_box{
     display: inline-block;
-    width: 300px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 20%;
+    width: 100%;
+    float: left;
 }
 #content .sec_5 .contact_box_cell .information{
-    text-align: left;
+    text-align: center;
 }
 #content .sec_5 .contact_box_cell .information .info{
     font-weight: 100;
+    font-size: 16px;
 }
 #content .sec_5 .contact_box_cell .information .info i{
     font-size: 16px;
     width: 28px;
 }
-#content .sec_5 .contact_box_cell .message li input{
-    font: inherit;
-    /* border-block-color: aqua; */
-    border: 1px;
-    border-style: solid;
-    border-color: gray;
-    padding: 10px;
+#content .sec_5 .contact_box_cell .message .form_group.message{
+    width: 100%;
+    float: left;
+    position: relative;
 }
-#content .sec_5 .contact_box_cell .message .contact_message{
-    list-style: none;
-}
-#content .sec_5 .contact_box_cell .message .contact_message li textarea
+#content .sec_5 .contact_box_cell .message .form_group textarea
 {
     width: 100%;
     display: block;
     overflow: hidden;
-    resize: none;
+    resize:none;
 }
 
 #content .sec_5 .contact_box_cell
 {
     padding-top: 20px;
+    
 }
-#content .sec_5 .contact_box_cell .message .contact_message .li_name,
-#content .sec_5 .contact_box_cell .message .contact_message .li_email
+#content .sec_5 .contact_box_cell .message  .form_group.name,
+#content .sec_5 .contact_box_cell .message  .form_group.email
 {
-    display: inline-block;
     width: 50%;
     float: left;
     padding-bottom: 8px;
+}
+#content .sec_5 .contact_box_cell .message  .form_group textarea{
+    padding: 8px;
+    /* border-radius: 16px; */
+}
+#content .sec_5 .contact_box_cell .message  .form_group textarea::placeholder{
+    /* text-align: left;  */
+    color:#ccc; 
+    /* padding: 6px; */
+}
+#content .sec_5 .contact_box_cell .message  .form_group.invalid textarea{
+    border-color: #ff0000;
+}
+#content .sec_5 .contact_box_cell .message  .form_group.invalid textarea::placeholder{
+    color: #ff0000;
+}
+@media(max-width:592px){
+    #content .sec_5 .contact_box_cell .contact_box{
+        padding: 20px 10%;
+    }
+}
+.char_count {
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    font-size: 12px;
+    color: #aaa;
 }
 #content .sec_5 .contact_box_cell .message .submit_btn{
     color: white;
     background-color: black;
     margin-top: 16px;
-    float: right;
+    /* float: right; */
     padding: 10px;
     cursor:pointer;
     border: 0;
+}
+#content .sec_5 .toasts{
+    position: fixed;
+    top: 60px;
+    right: 8px;
+}
+#content .sec_5 .toast {
+    margin-bottom: 16px; /* Thêm khoảng cách giữa các toasts */
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-left: 4px solid;
+    padding: 20px 0px;
+    box-shadow: 0px 5px 24px rgba(0, 0, 0, 0.5);
+    
+    overflow: hidden;
+    animation: slideleft 0.3s linear, fadeout 0.5s linear 3s;
+    /* transition: transform 1s ease, opacity 1s ease; Hiệu ứng khi đóng */
+}
+@keyframes fadeout{
+    to{
+        opacity: 0;
+    }
+}
+@keyframes slideleft{
+    from{
+        opacity: 0;
+        transform: translateX(calc(100% + 8px));
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+#content .sec_5 .toast_icon,
+#content .sec_5 .toast_close {
+    padding: 0px 16px;
+}
+
+#content .sec_5 .toast_icon {
+    font-size: 24px;
+}
+
+#content .sec_5 .toast_body {
+    text-align: left;
+    flex-grow: 1;
+}
+
+#content .sec_5 .toast_title {
+
+}
+#content .sec_5 .toast_message {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#content .sec_5 .toast_close {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: color 0.2s ease; /* Thêm hiệu ứng hover */
+}
+
+#content .sec_5 .toast_close:hover {
+    color: #ff0000; /* Đổi màu khi hover */
+}
+
+.toast__success {
+    border-color: #47d864 !important;
+}
+
+.toast__success .toast_icon {
+    color: #47d864;
+}
+
+.toast__error {
+    border-color: #ff623d !important;
+}
+
+.toast__error .toast_icon {
+    color: #ff623d;
 }
 #footer{
     text-align: center;
