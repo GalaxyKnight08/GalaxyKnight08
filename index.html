@@ -468,15 +468,15 @@
         <script src = "assets/js/backend.js"></script>
         <script src ="assets/js/validator.js"></script>
         <script>
-            // Validator({
-            //     form: '.contact_box.message',
-            //     rules: [
-            //         Validator.isRequired('.form_group.name','Please fill your name here'),
-            //         Validator.isEmail('.form_group.email', 'Please fill your email here'),
-            //         Validator.isRequired('.form_group.message')
-            //     ]
-            // });
-            // console.log(typeof rules);
+            Validator({
+                form: '.contact_box.message',
+                rules: [
+                    Validator.isRequired('.form_group.name','Please fill your name here'),
+                    Validator.isEmail('.form_group.email', 'Please fill your email here'),
+                    Validator.isRequired('.form_group.message')
+                ]
+            });
+            console.log(typeof rules);
         </script>
     </body>
 </html>
