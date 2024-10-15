@@ -165,6 +165,7 @@ function render_music_boxes(idx){
 }
 /*Play audio*/
 function play_audio(cur_idx) {
+  console.log(idx);
   if(cur_idx == playlist.length){
     cur_idx = 0;
   }
@@ -223,20 +224,15 @@ mini_music_player_play_btn.onclick = () => {
 }
 /*Render mini_music_player */
 function render_mini_music_player (cur_idx) {
-  if(cur_idx == playlist.length){
-    cur_idx = 0;
-  }
-  if (cur_idx < 0){
-    cur_idx = playlist.length - 1;
-  }
-      mini_music_player.style.display = 'flex';
-      // console.log(playlist[cur_idx]);
-      var name = playlist[cur_idx].name;
-      var artist = playlist[cur_idx].artist;
-      var img_url = playlist[cur_idx].img;
-      mini_music_player.querySelector('.name').innerText = name;
-      mini_music_player.querySelector('.artist').innerText = artist;
-      mini_music_player.querySelector('img').src = './assets' + img_url;
+  mini_music_player.style.display = 'flex';
+  // console.log(playlist[cur_idx]);
+  var name = playlist[cur_idx].name;
+  var artist = playlist[cur_idx].artist;
+  var img_url = playlist[cur_idx].img;
+  mini_music_player.querySelector('.name').innerText = name;
+  mini_music_player.querySelector('.artist').innerText = artist;
+  mini_music_player.querySelector('img').src = './assets' + img_url;
+  play_music_mode(cur_idx);
 };
 /*Music player full scr*/
 var music_player_full_scr_close_controller = music_player_full_scr.querySelector('.close_btn');
@@ -382,7 +378,7 @@ function render_music_player(cur_idx){
       music_player_full_scr_shuffle_btn.classList.remove('light-active');
       isShuffle = false;
     }
-    music_player_full_scr_mode(cur_idx);
+    play_music_mode(cur_idx);
   }
   music_player_full_scr_replay_btn .onclick = () => {
     if(!isReplay){
@@ -393,9 +389,9 @@ function render_music_player(cur_idx){
       music_player_full_scr_replay_btn.classList.remove('light-active');
       isReplay = false;
     }
-    music_player_full_scr_mode(cur_idx);
+    play_music_mode(cur_idx);
   }  
-  music_player_full_scr_mode(cur_idx);
+  play_music_mode(cur_idx);
   //cur_idx++;
   music_player_full_scr_changing_forward_btn.onclick = () => {
     idx = ++cur_idx;
@@ -409,7 +405,7 @@ function render_music_player(cur_idx){
   }
   boxWidth = progress_line_box.offsetWidth - 4; // Get the width of the progress bar container 
 }
-function music_player_full_scr_mode(cur_idx){
+function play_music_mode(cur_idx){
   // console.log(cur_idx);
   if(isReplay === true && isShuffle === false){
     // console.log("replay");
