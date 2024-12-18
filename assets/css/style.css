@@ -577,18 +577,18 @@ html{
 }
 #footer{
     text-align: center;
-    padding-top: 84px;
-    padding-bottom: 84px;
+    padding-top: 336px;
+    padding-bottom: 36px;
     background-color: black;
 }
 #footer a{
-    font-size: 28px;
+    font-size: 24px;
     color: white;
 }
 #footer h2{
     padding-top: 12px;
     font-weight: 100;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
 }
 #footer a:hover{
